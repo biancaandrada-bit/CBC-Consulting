@@ -14,15 +14,3 @@ if (navToggle && nav) {
     });
   });
 }
-
-const form = document.querySelector("#contact-form");
-
-if (form) {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const status = form.querySelector(".form-status");
-    if (status) {
-      status.textContent = "Solicitarea este pregătită. În Wix, acest formular trebuie conectat la Inbox, CRM sau automatizare e-mail.";
-    }
-  });
-}

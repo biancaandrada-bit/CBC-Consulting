@@ -202,7 +202,7 @@
             <div><dt>Fax</dt><dd>+40 372 87 04 70</dd></div>
           </dl>
         </div>
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xwvywggv" method="POST">
           <label>Nume și prenume<input name="name" required></label>
           <label>Companie / instituție<input name="company" required></label>
           <label>Telefon<input name="phone" required></label>
@@ -228,6 +228,7 @@
           </label>
           <label>Mesaj<textarea name="message" rows="5"></textarea></label>
           <label class="checkbox"><input type="checkbox" required> Sunt de acord ca datele transmise să fie prelucrate pentru a primi un răspuns la solicitarea mea.</label>
+          <input type="hidden" name="_subject" value="Solicitare nouă de pe site-ul CBC Consulting">
           <button class="button primary" type="submit">Trimite solicitarea</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
