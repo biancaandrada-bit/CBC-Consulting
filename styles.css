@@ -45,13 +45,14 @@ a { color: inherit; }
 
 .brand-logo {
   display: block;
-  width: 72px;
-  height: 72px;
-  object-fit: cover;
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
   object-position: center;
   border-radius: 50%;
   border: 1px solid var(--line);
   background: var(--white);
+  padding: 4px;
 }
 
 .brand strong,
@@ -109,6 +110,16 @@ a { color: inherit; }
   padding: clamp(64px, 8vw, 112px) clamp(18px, 5vw, 72px);
   background:
     linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.93) 48%, rgba(244,248,247,.9) 100%);
+}
+
+.hero-logo {
+  display: block;
+  width: clamp(128px, 16vw, 190px);
+  height: auto;
+  margin: 0 0 24px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 16px 36px rgba(16, 24, 32, .12);
 }
 
 .eyebrow {
@@ -273,6 +284,11 @@ h3 {
   font-size: 18px;
 }
 
+.statement {
+  color: var(--ink) !important;
+  font-weight: 800;
+}
+
 .section-heading {
   max-width: 980px;
   margin-bottom: 34px;
@@ -288,6 +304,53 @@ h3 {
 
 .cards {
   grid-template-columns: repeat(5, minmax(190px, 1fr));
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  gap: 18px;
+}
+
+.process-grid article {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.process-grid span {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--accent-dark);
+  font-weight: 900;
+}
+
+.process-grid p {
+  color: var(--muted);
+}
+
+.reasons-grid {
+  grid-template-columns: repeat(5, minmax(190px, 1fr));
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.detail-grid article,
+.guidance article {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.detail-grid p,
+.guidance p {
+  color: var(--muted);
 }
 
 .card,
@@ -348,6 +411,10 @@ blockquote {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.list-title {
+  margin: 26px 0 12px;
 }
 
 .program-list span {
@@ -420,6 +487,19 @@ textarea {
 
 textarea { resize: vertical; }
 
+input:invalid,
+textarea:invalid,
+select:invalid {
+  border-color: #b3261e;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid rgba(7, 25, 184, .16);
+  border-color: var(--accent);
+}
+
 .checkbox {
   display: flex;
   align-items: flex-start;
@@ -431,6 +511,20 @@ textarea { resize: vertical; }
 .checkbox input {
   width: auto;
   margin-top: 5px;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-message {
+  margin: 0;
+  color: #b3261e;
+  font-weight: 800;
 }
 
 .site-footer {
@@ -450,6 +544,25 @@ textarea { resize: vertical; }
   margin-bottom: 8px;
 }
 
+.thank-you-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: clamp(32px, 5vw, 72px);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(7, 25, 184, .12), transparent 30%),
+    var(--soft);
+}
+
+.thank-you-card {
+  width: min(760px, 100%);
+  padding: clamp(30px, 5vw, 56px);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
 @media (max-width: 1100px) {
   .hero,
   .contact-section {
@@ -460,6 +573,11 @@ textarea { resize: vertical; }
     min-height: 380px;
   }
   .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .process-grid,
+  .detail-grid,
+  .reasons-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -484,13 +602,16 @@ textarea { resize: vertical; }
   .split,
   .two-column,
   .cards,
+  .process-grid,
+  .detail-grid,
+  .reasons-grid,
   .metric-row {
     grid-template-columns: 1fr;
   }
   .brand small { display: none; }
   .brand-logo {
-    width: 58px;
-    height: 58px;
+    width: 68px;
+    height: 68px;
   }
   h1 { font-size: 40px; }
   .lead { font-size: 18px; }
