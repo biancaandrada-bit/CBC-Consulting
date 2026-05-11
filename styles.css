@@ -195,6 +195,11 @@ h3 {
 .button.primary:hover,
 .nav-cta:hover { background: var(--accent-dark); }
 
+.button:disabled {
+  opacity: .7;
+  cursor: wait;
+}
+
 .button.secondary {
   color: var(--accent-dark);
   background: transparent;

@@ -48,21 +48,51 @@ if (contactForm) {
   });
 
   contactForm.addEventListener("submit", (event) => {
-    if (contactForm.checkValidity()) {
-      if (message) message.textContent = "";
+    event.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      const firstInvalid = contactForm.querySelector(":invalid");
+      message.textContent = "Te rugăm să completezi corect câmpurile obligatorii înainte de trimitere.";
+
+      if (firstInvalid) {
+        firstInvalid.focus();
+        firstInvalid.reportValidity();
+      }
+
       return;
     }
 
-    event.preventDefault();
-    const firstInvalid = contactForm.querySelector(":invalid");
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const formData = new FormData(contactForm);
 
-    if (message) {
-      message.textContent = "Te rugăm să completezi corect câmpurile obligatorii înainte de trimitere.";
+    if (message) message.textContent = "";
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Se trimite...";
     }
 
-    if (firstInvalid) {
-      firstInvalid.focus();
-      firstInvalid.reportValidity();
-    }
+    fetch(contactForm.action, {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Formspree submission failed");
+        }
+
+        window.location.href = "https://cbc-consultanta.ro/multumim.html";
+      })
+      .catch(() => {
+        if (message) {
+          message.textContent = "Mesajul nu a putut fi trimis. Te rugăm să încerci din nou sau să ne scrii direct pe e-mail.";
+        }
+      })
+      .finally(() => {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Trimite solicitarea";
+        }
+      });
   });
 }
